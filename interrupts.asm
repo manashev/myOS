@@ -1,5 +1,8 @@
 [extern isr_handler] ; Defined in isr.h
 [extern irq_handler] ; Defined in isr.h
+[extern irq_multitask_timer_handler]
+
+[global irq_multitask_timer_stub]
 
 isr_common_stub:
     ; 1. Save CPU state
@@ -46,6 +49,14 @@ irq_common_stub:
     popa
     add esp, 8
     sti
+    iret
+
+irq_multitask_timer_stub:
+    pushad
+    push esp
+    call irq_multitask_timer_handler
+    pop esp
+    popad
     iret
 
 %macro ISR_WITHOUT_ERRCODE 1

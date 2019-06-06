@@ -3,6 +3,7 @@
 
 #define IRQ0 32 // timer
 #define IRQ1 33 // keyboard
+#define IRQ2 34 // timer for multitasking
 
 typedef struct {
    u32 ds;                                      // Data segment selector
